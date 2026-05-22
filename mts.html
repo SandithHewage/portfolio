@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MTS Trolley Doors — Sandith Hewage</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="wordmark">Sandith Hewage</a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html#work" class="nav-link">Work</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="nav-link">Résumé</a>
+      <button class="nav-link contact-trigger" type="button">Contact</button>
+    </nav>
+
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-menu" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="0" y="3" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect x="0" y="9" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect x="0" y="15" width="20" height="2" rx="1" fill="currentColor"/>
+      </svg>
+      <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <line x1="3" y1="3" x2="17" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="17" y1="3" x2="3" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <nav class="mobile-menu" aria-label="Mobile navigation">
+    <a href="index.html#work" class="mobile-menu-link">Work</a>
+    <a href="resume.pdf" target="_blank" rel="noopener" class="mobile-menu-link">Résumé</a>
+    <button class="mobile-menu-link contact-trigger" type="button">Contact</button>
+  </nav>
+
+  <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Contact">
+    <div class="contact-modal-backdrop"></div>
+    <div class="contact-modal-panel">
+      <button class="contact-modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <p class="contact-modal-label">Contact</p>
+      <div class="contact-modal-links">
+        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">sandithxyz@gmail.com</a>
+        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">linkedin.com/in/sandithhewage</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <article class="case-study">
+      <div class="container">
+
+        <nav class="case-nav" aria-label="Case study navigation">
+          <span></span>
+          <a href="smart-dnd.html" class="case-nav-link">
+            Smart DND
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+
+        <h1 class="case-title">MTS Trolley Doors</h1>
+        <p class="case-lede">The trolley door wasn't broken. The feedback loop was.</p>
+
+        <div class="case-body">
+          <p>Over four weeks on San Diego's MTS trolley — 30 rider interviews and countless hours watching people board — I kept seeing the same thing. Riders would press the door button, wait, press it again, sometimes a third time, then look at other passengers to check if anything was actually happening. They weren't impatient. They were trying to verify that the system had heard them.</p>
+
+          <p>11 of the 30 people I interviewed said they weren't sure whether their press had registered. Most knew how the button worked. What they couldn't tell was whether it had worked, because nothing on the button told them. The press happened in silence.</p>
+
+          <p>The redesign doesn't touch the door. It makes the button show what state it's in.</p>
+
+          <p>Four states, all visible on the button:</p>
+
+          <ul>
+            <li><strong>Idle.</strong> While the trolley moves, the button stays dim. Nothing to do yet.</li>
+            <li><strong>Ready.</strong> As it pulls in, the button lights up. You can press now.</li>
+            <li><strong>Pressed.</strong> The instant your finger leaves, the state changes. This is what didn't exist before. Your press gets immediate acknowledgment, separate from whatever the door does next.</li>
+            <li><strong>Opening.</strong> A short transition runs while the system processes. The rider knows something happened even before the door visibly moves.</li>
+          </ul>
+
+          <p>I tested this with peers in Figma walkthroughs. Most people identified each state without prompting. Color alone wasn't enough though — accessibility needs shape and brightness shift too, not just color changes.</p>
+
+          <p>What I still don't know: whether this actually reduces repeat-press behavior on a real platform, in real sun, on a crowded Saturday afternoon. The next step would be testing at an actual station.</p>
+
+          <p>The thing I find interesting looking back is that the original problem was invisible. The button works. The door works. The system does what it's supposed to do. The failure lived in the gap between input and response, and I only noticed it by watching the same hesitation happen over and over in different riders who didn't know each other.</p>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="case-footer">
+    <span>San Diego</span>
+    <span>© 2026</span>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('is-open');
+      mobileMenu.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Menu');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('is-open');
+        mobileMenu.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Menu');
+      });
+    });
+
+    const contactModal = document.getElementById('contact-modal');
+
+    function openContact() {
+      hamburger.classList.remove('is-open');
+      mobileMenu.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Menu');
+      contactModal.classList.add('is-open');
+    }
+
+    function closeContact() { contactModal.classList.remove('is-open'); }
+
+    document.querySelectorAll('.contact-trigger').forEach(el => el.addEventListener('click', openContact));
+    contactModal.querySelector('.contact-modal-close').addEventListener('click', closeContact);
+    contactModal.querySelector('.contact-modal-backdrop').addEventListener('click', closeContact);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+  </script>
+</body>
+</html>

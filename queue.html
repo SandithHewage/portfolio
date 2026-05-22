@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queue — Sandith Hewage</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="wordmark">Sandith Hewage</a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html#work" class="nav-link">Work</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="nav-link">Résumé</a>
+      <button class="nav-link contact-trigger" type="button">Contact</button>
+    </nav>
+
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
+      <svg class="icon-menu" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="0" y="3" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect x="0" y="9" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect x="0" y="15" width="20" height="2" rx="1" fill="currentColor"/>
+      </svg>
+      <svg class="icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <line x1="3" y1="3" x2="17" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="17" y1="3" x2="3" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <nav class="mobile-menu" aria-label="Mobile navigation">
+    <a href="index.html#work" class="mobile-menu-link">Work</a>
+    <a href="resume.pdf" target="_blank" rel="noopener" class="mobile-menu-link">Résumé</a>
+    <button class="mobile-menu-link contact-trigger" type="button">Contact</button>
+  </nav>
+
+  <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Contact">
+    <div class="contact-modal-backdrop"></div>
+    <div class="contact-modal-panel">
+      <button class="contact-modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <p class="contact-modal-label">Contact</p>
+      <div class="contact-modal-links">
+        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">sandithxyz@gmail.com</a>
+        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">linkedin.com/in/sandithhewage</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <article class="case-study">
+      <div class="container">
+
+        <nav class="case-nav" aria-label="Case study navigation">
+          <a href="smart-dnd.html" class="case-nav-link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Smart DND
+          </a>
+          <a href="scabs.html" class="case-nav-link">
+            Scabs
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+
+        <h1 class="case-title">Queue</h1>
+        <p class="case-lede">Waiting doesn't feel bad because it's long. It feels bad because it's uncertain.</p>
+
+        <div class="case-body">
+          <p>A 20-minute wait with a clear progress signal feels shorter than a 10-minute wait with no signal at all. This is one of the most replicated findings in waiting psychology — David Maister's 1985 research at MIT, confirmed by every study since. Perceived duration is a function of certainty, not clock time.</p>
+
+          <p>Restaurant wait systems don't know this. They optimize for table turnover and throughput. The guest experience runs on a completely different model, built around whether anything is happening and whether the system has forgotten about them.</p>
+
+          <p>I interviewed 16 people about their restaurant wait experiences and shadowed two host stands during peak hours. The pattern was clear: 13 of 16 said they avoid leaving the host stand once checked in, even when told it's fine. They're worried about missing the call. People consistently overestimated their wait time in retrospect when given no progress information — one person remembered a 15-minute wait as "almost an hour." Everyone who mentioned it preferred an honest range ("15 to 25 minutes") over a precise estimate that might be wrong ("18 minutes").</p>
+
+          <p>One person put it directly: "I don't mind waiting. I just want to know what's happening."</p>
+
+          <p>Guests don't experience waiting in minutes. They experience it in certainty.</p>
+
+          <h2>I tested four directions.</h2>
+
+          <p>Live numerical queue position ("You are #7 of 12") sounded right but made people anxious. They'd watch the number and start doing math. If they moved from 7 to 6 in five minutes, was the wait faster or slower than expected? The exact information created a new cognitive load instead of reducing the existing one.</p>
+
+          <p>Constant real-time updates ("Still waiting." "Almost there.") made things worse. Frequent notifications keep attention on the wait, which is exactly what slows perceived duration. Time filled with attention to time passes more slowly.</p>
+
+          <p>Gamified waiting — a small game, trivia, points — felt disconnected and slightly insulting. Research on hospitality kept pointing in one direction: the wait should feel like part of the meal, not a chore needing distraction.</p>
+
+          <p>Hyper-precise time predictions didn't work either. A 17-minute estimate that landed at 22 felt like a broken promise. A 15-to-25-minute range that landed at 22 felt fine. People weight a negative deviation from expectation about twice as heavily as a positive one. Precision creates the expectation. Ranges absorb the variance.</p>
+
+          <h2>What worked: confidence states, not numbers.</h2>
+
+          <p>Stop showing minutes as the primary signal. Show guests where they are in a journey, with honest ranges. Make movement through that journey the main feedback.</p>
+
+          <h3>Confidence ranges, not point estimates.</h3>
+          <p>Instead of "18 minutes," the system shows "likely seating in 15 to 25 minutes." It's honest — wait times genuinely vary that much — and sidesteps the loss-aversion trap. When seating happens at 22 minutes, the expectation was already calibrated to include it. Hedged language ("likely seating in") signals the system's own uncertainty, which paradoxically makes guests trust it more. A confident-sounding precise estimate gets punished hard when wrong. A hedged estimate that lands inside its range gets credit for accuracy.</p>
+
+          <h3>Visible journey, not a clock.</h3>
+          <p>Guests see their progress as a sequence: checked in, queue progressing, table preparing, seating window approaching, ready. Each state is something the restaurant actually knows about — not a fake animation. Movement between states is the primary feedback. Minutes are secondary, available if the guest wants them but not the headline.</p>
+
+          <p>This is the peak-end rule in action. The journey gives the wait a shape with clear stages and a satisfying end. A shapeless duration doesn't form a clear memory; a journey does, and the memory tends to be of the stages, not the time.</p>
+
+          <h3>Permission to leave.</h3>
+          <p>One of the strongest findings was that guests feel trapped at the host stand even when told they don't have to stay. Queue includes an explicit "you can comfortably leave for the next 8 minutes" state with a return reminder before seating opens. The word "comfortably" is doing real work, signaling that the system is taking responsibility for their place in line.</p>
+
+          <p>An attention-free wait passes faster than an attention-bound one. A guest who walks to a nearby coffee shop perceives the wait as shorter than a guest who stood at the host stand for the same number of minutes, even when nothing else changes.</p>
+
+          <p>I tested this with seven people in Figma walkthroughs. Every participant preferred the confidence range over a precise estimate. The "permission to leave" state is what reacted to most strongly. Several said they hadn't realized how much energy they spend not leaving the host stand until they saw it explicitly named.</p>
+
+          <p>What the project actually needs is field validation: install it in a real restaurant, A/B against the existing system, measure both objective metrics (host stand crowding, no-show rate) and subjective ones (post-wait surveys on perceived duration and satisfaction).</p>
+
+          <p>The thing I found most interesting working through this is how much restaurant waiting is already designed — it's just designed for the wrong audience. The buzzer, the host stand, the "20 minutes" estimate are all designed for the restaurant's operations. They're honest information from the restaurant's point of view. They're just answering a question the guest isn't asking.</p>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="case-footer">
+    <span>San Diego</span>
+    <span>© 2026</span>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('is-open');
+      mobileMenu.classList.toggle('is-open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Menu');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('is-open');
+        mobileMenu.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Menu');
+      });
+    });
+
+    const contactModal = document.getElementById('contact-modal');
+
+    function openContact() {
+      hamburger.classList.remove('is-open');
+      mobileMenu.classList.remove('is-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Menu');
+      contactModal.classList.add('is-open');
+    }
+
+    function closeContact() { contactModal.classList.remove('is-open'); }
+
+    document.querySelectorAll('.contact-trigger').forEach(el => el.addEventListener('click', openContact));
+    contactModal.querySelector('.contact-modal-close').addEventListener('click', closeContact);
+    contactModal.querySelector('.contact-modal-backdrop').addEventListener('click', closeContact);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+  </script>
+</body>
+</html>

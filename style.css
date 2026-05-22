@@ -1,0 +1,797 @@
+/* ==========================================================================
+   SMOOTH SCROLL — CSS only, reduced-motion safe
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ==========================================================================
+   FONTS — place Inter-Variable.woff2 in fonts/ to activate the fallback.
+   Helvetica Neue renders natively on macOS without a font load.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+
+:root {
+  --paper: #F5F5F5;
+  --dust:  #DBD7D2;
+  --smoke: #555555;
+  --onyx:  #111111;
+  --border:       rgba(85, 85, 85, 0.18);
+  --border-hover: rgba(85, 85, 85, 0.30);
+}
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+body {
+  font-family: "Helvetica Neue", "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--onyx);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   CONTAINER — constrains the headline and work grid; not used by header
+   or hero-detail
+   ========================================================================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ==========================================================================
+   HEADER — full viewport width, no inner container
+   Wordmark at left edge, nav at right edge, both 24px from viewport.
+   ========================================================================== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--onyx);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Nav — hidden on mobile, shown at 768px */
+.nav {
+  display: none;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--smoke);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+.nav-link:hover {
+  color: var(--onyx);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--onyx);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Hamburger — visible on mobile, hidden at 768px */
+.hamburger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 4px;
+  width: 28px;
+  height: 28px;
+  color: var(--smoke);
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.hamburger:hover {
+  color: var(--onyx);
+}
+
+/* Animated hamburger ↔ X crossfade */
+.hamburger svg {
+  position: absolute;
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.hamburger .icon-menu {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.hamburger .icon-close {
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+
+.hamburger.is-open .icon-menu {
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+.hamburger.is-open .icon-close {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Mobile dropdown — floats over content, right-aligned */
+.mobile-menu {
+  position: fixed;
+  top: 58px;
+  right: 24px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  background: var(--paper);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 200ms ease-out, transform 200ms ease-out, visibility 200ms;
+  pointer-events: none;
+}
+
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-menu-link {
+  display: block;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--smoke);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border);
+  transition: color 150ms ease-out;
+}
+
+.mobile-menu-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:focus-visible {
+  color: var(--onyx);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid var(--onyx);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   HERO — full-viewport-height section
+   .hero-inner (constrained container) holds the headline.
+   .hero-detail lives outside the container, anchored to the hero corners.
+   ========================================================================== */
+
+.hero {
+  position: relative;
+}
+
+.hero-inner {
+  min-height: calc(100vh - 58px); /* full viewport minus header height */
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 720px;
+  padding: 0 24px;
+}
+
+.hero-content h1 {
+  font-size: clamp(18px, 5.3vw, 30px);
+  line-height: 1.12;
+  font-weight: 500;
+  color: var(--onyx);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  white-space: nowrap;
+}
+
+.hero-content p {
+  font-size: 13px;
+  color: var(--smoke);
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* SAN DIEGO / © 2026 — anchored to hero corners, outside the container */
+.hero-detail {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--smoke);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   WORK SECTION — mobile-first
+   ========================================================================== */
+
+.work {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  border-bottom: 0.5px solid var(--border);
+  scroll-margin-top: -28px;
+}
+
+.work-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--onyx);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+/* ==========================================================================
+   PROJECT GRID — mobile-first (single column)
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   CARD — mobile-first
+   ========================================================================== */
+
+.card {
+  display: block;
+  background: #FFFFFF;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out, transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--onyx);
+  outline-offset: 2px;
+}
+
+.card:hover {
+  background: var(--dust);
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
+}
+
+.card-image {
+  height: 200px;
+  background: var(--dust);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--smoke);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.card-content {
+  padding: 14px 16px 18px;
+  min-height: 92px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--onyx);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.card-hook {
+  font-size: 14px;
+  color: var(--smoke);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.card-hook em {
+  font-style: italic;
+}
+
+/* ==========================================================================
+   DESKTOP ≥ 768px
+   ========================================================================== */
+
+@media (min-width: 768px) {
+
+  /* Container */
+  .container {
+    padding: 0 40px;
+  }
+
+  /* Header — 40px from each viewport edge */
+  .header {
+    padding: 28px 40px;
+  }
+
+  .wordmark {
+    font-size: 14px;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  /* Hero */
+  .hero-inner {
+    min-height: calc(100vh - 74px); /* full viewport minus desktop header height */
+  }
+
+  .hero-content {
+    padding: 0 40px;
+  }
+
+  .hero-content h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin: 0 0 16px;
+    white-space: nowrap; /* keep headline on one line */
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  /* Hero-detail — 40px from each viewport edge */
+  .hero-detail {
+    left: 40px;
+    right: 40px;
+    font-size: 13px;
+  }
+
+  /* Work */
+  .work {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .work-label {
+    font-size: 14px;
+  }
+
+  /* Grid */
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  /* Card */
+  .card-image {
+    height: 340px;
+  }
+
+  .card-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .card-content {
+    padding: 18px 20px 22px;
+    min-height: 108px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-hook {
+    font-size: 15px;
+  }
+
+}
+
+/* ==========================================================================
+   WORDMARK AS LINK (case study pages)
+   ========================================================================== */
+
+a.wordmark {
+  text-decoration: none;
+  transition: color 150ms ease-out;
+}
+
+/* nav-link and mobile-menu-link can be buttons — strip browser defaults */
+button.nav-link,
+button.mobile-menu-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+button.nav-link {
+  padding: 0;
+}
+
+a.wordmark:hover {
+  color: var(--smoke);
+}
+
+/* ==========================================================================
+   CASE STUDY PAGES
+   ========================================================================== */
+
+/* Prev / next case study navigation */
+.case-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0 56px;
+}
+
+.case-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--smoke);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 150ms ease-out, gap 150ms ease-out;
+}
+
+.case-nav-link:hover {
+  color: var(--onyx);
+  gap: 12px;
+}
+
+.case-nav-link:focus-visible {
+  outline: 2px solid var(--onyx);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .case-nav-link { font-size: 13px; }
+}
+
+.case-study {
+  padding-top: 0;
+  padding-bottom: 100px;
+}
+
+.case-title {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--onyx);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.case-lede {
+  font-size: 18px;
+  color: var(--smoke);
+  line-height: 1.55;
+  margin-bottom: 56px;
+  max-width: 680px;
+}
+
+.case-body {
+  max-width: 680px;
+}
+
+.case-body p {
+  font-size: 16px;
+  color: var(--onyx);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.case-body h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--onyx);
+  letter-spacing: -0.01em;
+  margin: 48px 0 16px;
+  line-height: 1.3;
+}
+
+.case-body h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--onyx);
+  margin: 32px 0 12px;
+  line-height: 1.3;
+}
+
+.case-body ul {
+  margin: 0 0 24px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.case-body li {
+  font-size: 16px;
+  color: var(--onyx);
+  line-height: 1.75;
+  margin-bottom: 16px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.case-body li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--smoke);
+}
+
+.case-body strong {
+  font-weight: 500;
+  color: var(--onyx);
+}
+
+/* Footer on case study pages — full-width, pinned at bottom */
+.case-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-top: 0.5px solid var(--border);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--smoke);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+  .case-title {
+    font-size: 48px;
+    margin-bottom: 28px;
+  }
+
+  .case-lede {
+    font-size: 20px;
+    margin-bottom: 64px;
+  }
+
+  .case-body p,
+  .case-body li {
+    font-size: 17px;
+  }
+
+  .case-body h2 {
+    font-size: 22px;
+    margin-top: 56px;
+  }
+
+  .case-body h3 {
+    font-size: 17px;
+    margin-top: 40px;
+  }
+
+  .case-footer {
+    padding: 20px 40px;
+    font-size: 13px;
+  }
+}
+
+/* ==========================================================================
+   CONTACT MODAL
+   ========================================================================== */
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.contact-modal.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.contact-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 245, 245, 0.80);
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+.contact-modal.is-open .contact-modal-backdrop {
+  opacity: 1;
+}
+
+.contact-modal-panel {
+  position: relative;
+  background: #ffffff;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 28px 24px;
+  width: 300px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.contact-modal.is-open .contact-modal-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-modal-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--smoke);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.contact-modal-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact-modal-link {
+  display: block;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--onyx);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border);
+  transition: color 150ms ease-out;
+}
+
+.contact-modal-link:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.contact-modal-link:hover {
+  color: var(--smoke);
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  color: var(--smoke);
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.contact-modal-close:hover {
+  color: var(--onyx);
+}
+
+/* ==========================================================================
+   REDUCED MOTION — disable transitions and smooth scroll
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .nav-link,
+  .case-nav-link,
+  .hamburger,
+  a.wordmark {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
