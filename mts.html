@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MTS Trolley Doors — Sandith Hewage</title>
+  <meta name="description" content="Redesigning a door interface that 30 riders read wrong — a UX case study by Sandith Hewage.">
+  <link rel="canonical" href="https://sandith.com/mts.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sandith.com/mts.html">
+  <meta property="og:title" content="MTS Trolley Doors — Sandith Hewage">
+  <meta property="og:description" content="Redesigning a door interface that 30 riders read wrong — a UX case study by Sandith Hewage.">
+  <meta property="og:image" content="https://sandith.com/og.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <a class="skip-link" href="#case-body">Skip to content</a>
 
   <header class="header">
     <a href="index.html" class="wordmark">Sandith Hewage</a>
@@ -40,16 +49,23 @@
   <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Contact">
     <div class="contact-modal-backdrop"></div>
     <div class="contact-modal-panel">
-      <button class="contact-modal-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <p class="contact-modal-label">Contact</p>
+
       <div class="contact-modal-links">
-        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">sandithxyz@gmail.com</a>
-        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">linkedin.com/in/sandithhewage</a>
+        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">
+          sandithxyz@gmail.com
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
+            <path d="M1 6l7 4.5 7-4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">
+          linkedin.com/in/sandithhewage
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
       </div>
     </div>
   </div>
@@ -71,11 +87,20 @@
         <h1 class="case-title">MTS Trolley Doors</h1>
         <p class="case-lede">The trolley door wasn't broken. The feedback loop was.</p>
 
+        <nav class="case-tabs" aria-label="Case study sections">
+          <button class="case-tab" data-section="problem">Problem</button>
+          <button class="case-tab" data-section="insight">The Insight</button>
+          <button class="case-tab" data-section="testing">Testing</button>
+          <button class="case-tab" data-section="learnings">Learnings</button>
+        </nav>
+
         <div class="case-body">
+          <h2 id="problem">Problem</h2>
           <p>Over four weeks on San Diego's MTS trolley — 30 rider interviews and countless hours watching people board — I kept seeing the same thing. Riders would press the door button, wait, press it again, sometimes a third time, then look at other passengers to check if anything was actually happening. They weren't impatient. They were trying to verify that the system had heard them.</p>
 
           <p>11 of the 30 people I interviewed said they weren't sure whether their press had registered. Most knew how the button worked. What they couldn't tell was whether it had worked, because nothing on the button told them. The press happened in silence.</p>
 
+          <h2 id="insight">The Insight</h2>
           <p>The redesign doesn't touch the door. It makes the button show what state it's in.</p>
 
           <p>Four states, all visible on the button:</p>
@@ -87,10 +112,12 @@
             <li><strong>Opening.</strong> A short transition runs while the system processes. The rider knows something happened even before the door visibly moves.</li>
           </ul>
 
+          <h2 id="testing">Testing</h2>
           <p>I tested this with peers in Figma walkthroughs. Most people identified each state without prompting. Color alone wasn't enough though — accessibility needs shape and brightness shift too, not just color changes.</p>
 
           <p>What I still don't know: whether this actually reduces repeat-press behavior on a real platform, in real sun, on a crowded Saturday afternoon. The next step would be testing at an actual station.</p>
 
+          <h2 id="learnings">Learnings</h2>
           <p>The thing I find interesting looking back is that the original problem was invisible. The button works. The door works. The system does what it's supposed to do. The failure lived in the gap between input and response, and I only noticed it by watching the same hesitation happen over and over in different riders who didn't know each other.</p>
         </div>
 
@@ -104,6 +131,40 @@
   </footer>
 
   <script>
+    // Case Study Tabs
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.case-tab');
+      if (tabs.length === 0) return;
+
+      tabs[0].classList.add('is-active');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const sectionId = tab.dataset.section;
+          const target = document.getElementById(sectionId);
+          if (!target) return;
+          tabs.forEach(t => t.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.replaceState(null, '', `#${sectionId}`);
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const btn = document.querySelector(`.case-tab[data-section="${entry.target.id}"]`);
+            if (btn) {
+              tabs.forEach(t => t.classList.remove('is-active'));
+              btn.classList.add('is-active');
+            }
+          }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px' });
+
+      document.querySelectorAll('.case-body h2[id]').forEach(h => observer.observe(h));
+    });
+
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -130,13 +191,35 @@
       mobileMenu.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Menu');
+
+      const panel = contactModal.querySelector('.contact-modal-panel');
+      if (window.innerWidth >= 768) {
+        const trigger = document.querySelector('.nav .contact-trigger');
+        const rect = trigger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      } else {
+        const rect = hamburger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      }
+      contactModal.classList.add('is-dropdown');
+      setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 0);
+
       contactModal.classList.add('is-open');
     }
 
-    function closeContact() { contactModal.classList.remove('is-open'); }
+    function closeOnOutsideClick(e) {
+      if (!contactModal.querySelector('.contact-modal-panel').contains(e.target)) {
+        closeContact();
+      }
+    }
+
+    function closeContact() {
+      contactModal.classList.remove('is-open', 'is-dropdown');
+      contactModal.querySelector('.contact-modal-panel').style.cssText = '';
+      document.removeEventListener('click', closeOnOutsideClick);
+    }
 
     document.querySelectorAll('.contact-trigger').forEach(el => el.addEventListener('click', openContact));
-    contactModal.querySelector('.contact-modal-close').addEventListener('click', closeContact);
     contactModal.querySelector('.contact-modal-backdrop').addEventListener('click', closeContact);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
   </script>

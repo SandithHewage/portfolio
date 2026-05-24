@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Smart DND — Sandith Hewage</title>
+  <meta name="description" content="Your phone lets you silence everyone or no one — redesigning Do Not Disturb. A UX case study by Sandith Hewage.">
+  <link rel="canonical" href="https://sandith.com/smart-dnd.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sandith.com/smart-dnd.html">
+  <meta property="og:title" content="Smart DND — Sandith Hewage">
+  <meta property="og:description" content="Your phone lets you silence everyone or no one — redesigning Do Not Disturb. A UX case study by Sandith Hewage.">
+  <meta property="og:image" content="https://sandith.com/og.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <a class="skip-link" href="#case-body">Skip to content</a>
 
   <header class="header">
     <a href="index.html" class="wordmark">Sandith Hewage</a>
@@ -40,16 +49,23 @@
   <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Contact">
     <div class="contact-modal-backdrop"></div>
     <div class="contact-modal-panel">
-      <button class="contact-modal-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <p class="contact-modal-label">Contact</p>
+
       <div class="contact-modal-links">
-        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">sandithxyz@gmail.com</a>
-        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">linkedin.com/in/sandithhewage</a>
+        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">
+          sandithxyz@gmail.com
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
+            <path d="M1 6l7 4.5 7-4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">
+          linkedin.com/in/sandithhewage
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
       </div>
     </div>
   </div>
@@ -76,11 +92,21 @@
         <h1 class="case-title">Smart DND</h1>
         <p class="case-lede">Your phone lets you silence everyone or no one.</p>
 
+        <nav class="case-tabs" aria-label="Case study sections">
+          <button class="case-tab" data-section="problem">Problem</button>
+          <button class="case-tab" data-section="research">Research</button>
+          <button class="case-tab" data-section="insight">The Insight</button>
+          <button class="case-tab" data-section="testing">Testing</button>
+          <button class="case-tab" data-section="learnings">Learnings</button>
+        </nav>
+
         <div class="case-body">
+          <h2 id="problem">Problem</h2>
           <p>iOS models notifications as either apps or people. The person who matters most in your day doesn't live in one of those categories. She lives across both, and across all the apps the People list doesn't reach.</p>
 
           <p>Your girlfriend can text you. That goes through. She can also tag you on Instagram, send a Snap, ping your location, or get a delayed-flight alert that matters to you both. None of that rides on the Allowed People setting because it only covers the apps iOS classifies as communication. The system has a model of "person." It has a model of "app." What it doesn't have is a model of this specific person across every app she might reach you on.</p>
 
+          <h2 id="research">Research</h2>
           <p>I interviewed 18 people about how they use Focus, what they trust about it, and where they don't. The consistent pattern: people don't have a notification volume problem. They have a confidence problem.</p>
 
           <p>14 of 18 said they keep checking their phone during Focus modes because they're afraid of missing something from a specific person. A handful had given up on Focus altogether — they missed something important once and now they don't trust it. A few built elaborate workarounds: allowing the entire Phone app so any call gets through, including spam. Or allowlisting people in Messages knowing it wouldn't help if they used any other app.</p>
@@ -89,6 +115,7 @@
 
           <p>One person said something that stuck: "I trust myself to know who's important. I don't trust the phone to figure it out."</p>
 
+          <h2 id="insight">The Insight</h2>
           <p>Users think in people. The system thinks in apps and channels. The two models don't line up, so users do extra work to bridge them, and the bridge keeps failing because the system controls only some of the channels.</p>
 
           <p>The redesign organizes around people first. When you set up a Focus, you pick the people who matter. Not just for Messages and Phone, but across every app where iOS can identify the sender. If your priority person tags you on Instagram, mentions you in a Slack DM, or sends a WhatsApp message, the system treats those the same way it treats their text. The unit is the person.</p>
@@ -99,10 +126,12 @@
 
           <p>For non-priority people, the system uses light behavioral signals to escalate. Repeated contact within a short window can move a notification from silenced to surfaced. But this escalation is always shown, never hidden, and the user can turn it off entirely. The defaults are conservative. The system would rather miss surfacing something than guess wrong.</p>
 
+          <h2 id="testing">Testing</h2>
           <p>I tested this with five people in Figma walkthroughs. Every participant immediately understood the priority person concept. Nobody asked clarifying questions. The visible-decisions panel was what people reacted to most strongly. Several said something close to "wait, it tells me why?" The current system never explains itself, and the absence is more noticeable than expected.</p>
 
           <p>One person pushed back on soft escalation. They didn't want repeat contact to move things up automatically, even with transparency. For them, "priority person or not" was the only axis they wanted. Fair point.</p>
 
+          <h2 id="learnings">Learnings</h2>
           <p>What I don't know yet is whether this holds up in real use over weeks, where the actual cost of a wrong decision — missed flight, missed emergency, missed something between two people — is what matters. Walkthroughs can't simulate that stress. The design's real test is whether people trust it enough to leave Focus on for hours at a time.</p>
 
           <p>What I found most useful looking back is what this taught me about where Apple Intelligence sits in people's heads. The feature does real work. Intelligent Breakthrough catches some genuinely urgent notifications. But nobody gave it credit for that, because they couldn't see it happening.</p>
@@ -120,6 +149,40 @@
   </footer>
 
   <script>
+    // Case Study Tabs
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.case-tab');
+      if (tabs.length === 0) return;
+
+      tabs[0].classList.add('is-active');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const sectionId = tab.dataset.section;
+          const target = document.getElementById(sectionId);
+          if (!target) return;
+          tabs.forEach(t => t.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.replaceState(null, '', `#${sectionId}`);
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const btn = document.querySelector(`.case-tab[data-section="${entry.target.id}"]`);
+            if (btn) {
+              tabs.forEach(t => t.classList.remove('is-active'));
+              btn.classList.add('is-active');
+            }
+          }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px' });
+
+      document.querySelectorAll('.case-body h2[id]').forEach(h => observer.observe(h));
+    });
+
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -146,13 +209,35 @@
       mobileMenu.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Menu');
+
+      const panel = contactModal.querySelector('.contact-modal-panel');
+      if (window.innerWidth >= 768) {
+        const trigger = document.querySelector('.nav .contact-trigger');
+        const rect = trigger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      } else {
+        const rect = hamburger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      }
+      contactModal.classList.add('is-dropdown');
+      setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 0);
+
       contactModal.classList.add('is-open');
     }
 
-    function closeContact() { contactModal.classList.remove('is-open'); }
+    function closeOnOutsideClick(e) {
+      if (!contactModal.querySelector('.contact-modal-panel').contains(e.target)) {
+        closeContact();
+      }
+    }
+
+    function closeContact() {
+      contactModal.classList.remove('is-open', 'is-dropdown');
+      contactModal.querySelector('.contact-modal-panel').style.cssText = '';
+      document.removeEventListener('click', closeOnOutsideClick);
+    }
 
     document.querySelectorAll('.contact-trigger').forEach(el => el.addEventListener('click', openContact));
-    contactModal.querySelector('.contact-modal-close').addEventListener('click', closeContact);
     contactModal.querySelector('.contact-modal-backdrop').addEventListener('click', closeContact);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
   </script>

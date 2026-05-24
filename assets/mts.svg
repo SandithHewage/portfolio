@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 689.759 626.92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f2f2f2;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke: #111;
+        stroke-linecap: round;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-5 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 7px;
+      }
+
+      .cls-6 {
+        fill: #444;
+      }
+
+      .cls-2 {
+        stroke-width: 10px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: #dbd8d4;
+      }
+
+      .cls-4 {
+        stroke-linejoin: round;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+
+      .seat-back {
+        fill: #c8c8c8;
+        stroke: #111;
+        stroke-width: 5px;
+      }
+
+      .seat-cushion {
+        fill: #b8b8b8;
+        stroke: #111;
+        stroke-width: 5px;
+      }
+
+      @keyframes doorOpenLeftLoop {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-77.46px);
+        }
+        75% {
+          transform: translateX(-77.46px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes doorOpenRightLoop {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(77.46px);
+        }
+        75% {
+          transform: translateX(77.46px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes wheelSpin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .door-left {
+        animation: doorOpenLeftLoop 4s ease-in-out infinite;
+      }
+
+      .door-right {
+        animation: doorOpenRightLoop 4s ease-in-out infinite;
+      }
+
+      .wheel {
+        animation: wheelSpin 2s linear infinite;
+      }
+
+      .wheel-left {
+        transform-origin: 135.989px 512.456px;
+      }
+
+      .wheel-right {
+        transform-origin: 551.811px 512.456px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-2" x="44.604" y="149.586" width="600.551" height="336.886" rx="32.014" ry="32.014"/>
+  <rect class="cls-5" x="62.652" y="180.269" width="146.675" height="152.743" rx="20" ry="20"/>
+  <rect class="cls-5" x="478.473" y="180.269" width="146.675" height="152.743" rx="20" ry="20"/>
+  
+  <g class="wheel wheel-left">
+    <circle class="cls-3" cx="135.989" cy="512.456" r="22.801"/>
+    <circle class="cls-5" cx="135.989" cy="512.456" r="8.883"/>
+  </g>
+  <g class="wheel wheel-right">
+    <circle class="cls-3" cx="551.811" cy="512.456" r="22.801"/>
+    <circle class="cls-5" cx="551.811" cy="512.456" r="8.883"/>
+  </g>
+  
+  <line class="cls-1" x1="158.79" y1="512.456" x2="529.01" y2="512.456"/>
+  <path class="cls-4" d="M288.424,145.651v-.706c0-8.441,6.843-15.284,15.284-15.284h84.301c8.441,0,15.284,6.843,15.284,15.284v.706"/>
+  
+  <!-- Bench seat inside train -->
+  <rect class="seat-back" x="247.073" y="285" width="193.654" height="90" rx="4"/>
+  <rect class="seat-cushion" x="247.073" y="365" width="193.654" height="35" rx="3"/>
+  
+  <g class="door-left">
+    <path class="cls-3" d="M247.073,166.598h96.827v302.861h-96.827c-11.038,0-20-8.962-20-20V186.598c0-11.038,8.962-20,20-20Z"/>
+    <rect class="cls-3" x="247.757" y="180.269" width="79.376" height="152.743" rx="20" ry="20"/>
+    <circle class="cls-6" cx="317.838" cy="355.712" r="9.295"/>
+  </g>
+  
+  <g class="door-right">
+    <path class="cls-3" d="M343.9,166.598h96.827c11.038,0,20,8.962,20,20v262.861c0,11.038-8.962,20-20,20h-96.827V166.598h0Z"/>
+    <rect class="cls-3" x="362.625" y="180.269" width="79.376" height="152.743" rx="20" ry="20"/>
+    <circle class="cls-6" cx="368.344" cy="355.712" r="9.295"/>
+  </g>
+
+  <!-- Horizontal connecting members -->
+  <line class="cls-5" x1="247.073" y1="166.598" x2="440" y2="166.598"/>
+  <line class="cls-5" x1="247.073" y1="469.459" x2="440" y2="469.459"/>
+</svg>

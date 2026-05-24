@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scabs — Sandith Hewage</title>
+  <meta name="description" content="Building a real storefront and what $8,900 in sales taught me about checkout — a UX case study by Sandith Hewage.">
+  <link rel="canonical" href="https://sandith.com/scabs.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sandith.com/scabs.html">
+  <meta property="og:title" content="Scabs — Sandith Hewage">
+  <meta property="og:description" content="Building a real storefront and what $8,900 in sales taught me about checkout — a UX case study by Sandith Hewage.">
+  <meta property="og:image" content="https://sandith.com/og.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <a class="skip-link" href="#case-body">Skip to content</a>
 
   <header class="header">
     <a href="index.html" class="wordmark">Sandith Hewage</a>
@@ -40,16 +49,23 @@
   <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Contact">
     <div class="contact-modal-backdrop"></div>
     <div class="contact-modal-panel">
-      <button class="contact-modal-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <p class="contact-modal-label">Contact</p>
+
       <div class="contact-modal-links">
-        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">sandithxyz@gmail.com</a>
-        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">linkedin.com/in/sandithhewage</a>
+        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">
+          sandithxyz@gmail.com
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
+            <path d="M1 6l7 4.5 7-4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">
+          linkedin.com/in/sandithhewage
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
       </div>
     </div>
   </div>
@@ -71,12 +87,20 @@
         <h1 class="case-title">Scabs</h1>
         <p class="case-lede">I built a storefront for my fashion label. It made $8,900 on its first drop and taught me what I actually believe about ecommerce.</p>
 
+        <nav class="case-tabs" aria-label="Case study sections">
+          <button class="case-tab" data-section="context">Context</button>
+          <button class="case-tab" data-section="decisions">Key Decisions</button>
+          <button class="case-tab" data-section="results">Results</button>
+          <button class="case-tab" data-section="learnings">Learnings</button>
+        </nav>
+
         <div class="case-body">
+          <h2 id="context">Context</h2>
           <p>Scabs is a Los Angeles fashion label I founded in 2024. I designed and built the storefront myself in HTML, CSS, JavaScript, and Shopify Liquid because I wanted to know what happens when you have to defend every design choice against a real conversion outcome. The first drop sold $8,900. Most buyers came from Instagram, on mobile, in a tight window after the drop went live.</p>
 
           <p>Most Shopify themes are built for volume: dense product grids, aggressive calls-to-action, "12 people are viewing this" urgency. That actively hurts an independent fashion brand where the whole point is restraint and scarcity. I had to make something that held the brand's atmosphere and didn't get in the way of the sale.</p>
 
-          <h2>Three decisions mattered most.</h2>
+          <h2 id="decisions">Key Decisions</h2>
 
           <h3>The product page layout.</h3>
           <p>I shipped first with the standard Shopify pattern: large image at top, details stacked below, size selector and "add to cart" below the fold. On mobile that means scrolling past the entire image before reaching purchase information. On desktop, half the screen sits empty.</p>
@@ -99,10 +123,12 @@
 
           <p>This was the decision I was least sure about because I was overriding the default behavior of a system much larger than me. But a cart only earns its place when a customer might buy multiple things or return later. Neither applied. Forcing it in because Shopify expected it would have been deferring to the tool instead of the customer.</p>
 
+          <h2 id="results">Results</h2>
           <p>The first two hours of sales were dense, almost no hesitation between product page and purchase confirmation. Most traffic was mobile. It sold out faster than I'd planned.</p>
 
           <p>I want to be clear about who actually bought from Scabs: Instagram audience, almost all mobile, tight cultural group. Not broad reach. For a niche fashion brand, that's probably the correct shape. The work wasn't convincing them. It was not getting in their way.</p>
 
+          <h2 id="learnings">Learnings</h2>
           <p>What I'd carry forward: so much of the work was unlearning Shopify's defaults. The platform gives patterns right for the average store. Scabs wasn't average. Every decision that worked came from being willing to override a default once I understood why it was wrong for this case.</p>
         </div>
 
@@ -116,6 +142,40 @@
   </footer>
 
   <script>
+    // Case Study Tabs
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.case-tab');
+      if (tabs.length === 0) return;
+
+      tabs[0].classList.add('is-active');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const sectionId = tab.dataset.section;
+          const target = document.getElementById(sectionId);
+          if (!target) return;
+          tabs.forEach(t => t.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.replaceState(null, '', `#${sectionId}`);
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const btn = document.querySelector(`.case-tab[data-section="${entry.target.id}"]`);
+            if (btn) {
+              tabs.forEach(t => t.classList.remove('is-active'));
+              btn.classList.add('is-active');
+            }
+          }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px' });
+
+      document.querySelectorAll('.case-body h2[id]').forEach(h => observer.observe(h));
+    });
+
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -142,13 +202,35 @@
       mobileMenu.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Menu');
+
+      const panel = contactModal.querySelector('.contact-modal-panel');
+      if (window.innerWidth >= 768) {
+        const trigger = document.querySelector('.nav .contact-trigger');
+        const rect = trigger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      } else {
+        const rect = hamburger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      }
+      contactModal.classList.add('is-dropdown');
+      setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 0);
+
       contactModal.classList.add('is-open');
     }
 
-    function closeContact() { contactModal.classList.remove('is-open'); }
+    function closeOnOutsideClick(e) {
+      if (!contactModal.querySelector('.contact-modal-panel').contains(e.target)) {
+        closeContact();
+      }
+    }
+
+    function closeContact() {
+      contactModal.classList.remove('is-open', 'is-dropdown');
+      contactModal.querySelector('.contact-modal-panel').style.cssText = '';
+      document.removeEventListener('click', closeOnOutsideClick);
+    }
 
     document.querySelectorAll('.contact-trigger').forEach(el => el.addEventListener('click', openContact));
-    contactModal.querySelector('.contact-modal-close').addEventListener('click', closeContact);
     contactModal.querySelector('.contact-modal-backdrop').addEventListener('click', closeContact);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
   </script>

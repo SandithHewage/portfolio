@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Queue — Sandith Hewage</title>
+  <meta name="description" content="Waiting doesn't feel bad because it's long — it feels bad because it's uncertain. A UX case study by Sandith Hewage.">
+  <link rel="canonical" href="https://sandith.com/queue.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sandith.com/queue.html">
+  <meta property="og:title" content="Queue — Sandith Hewage">
+  <meta property="og:description" content="Waiting doesn't feel bad because it's long — it feels bad because it's uncertain. A UX case study by Sandith Hewage.">
+  <meta property="og:image" content="https://sandith.com/og.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <a class="skip-link" href="#case-body">Skip to content</a>
 
   <header class="header">
     <a href="index.html" class="wordmark">Sandith Hewage</a>
@@ -40,16 +49,23 @@
   <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-label="Contact">
     <div class="contact-modal-backdrop"></div>
     <div class="contact-modal-panel">
-      <button class="contact-modal-close" aria-label="Close">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <line x1="2" y1="2" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="14" y1="2" x2="2" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <p class="contact-modal-label">Contact</p>
+
       <div class="contact-modal-links">
-        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">sandithxyz@gmail.com</a>
-        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">linkedin.com/in/sandithhewage</a>
+        <a href="mailto:sandithxyz@gmail.com" class="contact-modal-link">
+          sandithxyz@gmail.com
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.25"/>
+            <path d="M1 6l7 4.5 7-4.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/sandithhewage" target="_blank" rel="noopener" class="contact-modal-link">
+          linkedin.com/in/sandithhewage
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
       </div>
     </div>
   </div>
@@ -76,18 +92,29 @@
         <h1 class="case-title">Queue</h1>
         <p class="case-lede">Waiting doesn't feel bad because it's long. It feels bad because it's uncertain.</p>
 
+        <nav class="case-tabs" aria-label="Case study sections">
+          <button class="case-tab" data-section="problem">Problem</button>
+          <button class="case-tab" data-section="research">Research</button>
+          <button class="case-tab" data-section="rejected-directions">Rejected Directions</button>
+          <button class="case-tab" data-section="solution">Solution</button>
+          <button class="case-tab" data-section="learnings">Learnings</button>
+        </nav>
+
         <div class="case-body">
+          <h2 id="problem">Problem</h2>
           <p>A 20-minute wait with a clear progress signal feels shorter than a 10-minute wait with no signal at all. This is one of the most replicated findings in waiting psychology — David Maister's 1985 research at MIT, confirmed by every study since. Perceived duration is a function of certainty, not clock time.</p>
 
           <p>Restaurant wait systems don't know this. They optimize for table turnover and throughput. The guest experience runs on a completely different model, built around whether anything is happening and whether the system has forgotten about them.</p>
 
+          <h2 id="research">Research</h2>
           <p>I interviewed 16 people about their restaurant wait experiences and shadowed two host stands during peak hours. The pattern was clear: 13 of 16 said they avoid leaving the host stand once checked in, even when told it's fine. They're worried about missing the call. People consistently overestimated their wait time in retrospect when given no progress information — one person remembered a 15-minute wait as "almost an hour." Everyone who mentioned it preferred an honest range ("15 to 25 minutes") over a precise estimate that might be wrong ("18 minutes").</p>
 
           <p>One person put it directly: "I don't mind waiting. I just want to know what's happening."</p>
 
           <p>Guests don't experience waiting in minutes. They experience it in certainty.</p>
 
-          <h2>I tested four directions.</h2>
+          <h2 id="rejected-directions">Rejected Directions</h2>
+          <p>I tested four directions.</p>
 
           <p>Live numerical queue position ("You are #7 of 12") sounded right but made people anxious. They'd watch the number and start doing math. If they moved from 7 to 6 in five minutes, was the wait faster or slower than expected? The exact information created a new cognitive load instead of reducing the existing one.</p>
 
@@ -97,8 +124,7 @@
 
           <p>Hyper-precise time predictions didn't work either. A 17-minute estimate that landed at 22 felt like a broken promise. A 15-to-25-minute range that landed at 22 felt fine. People weight a negative deviation from expectation about twice as heavily as a positive one. Precision creates the expectation. Ranges absorb the variance.</p>
 
-          <h2>What worked: confidence states, not numbers.</h2>
-
+          <h2 id="solution">What worked: confidence states, not numbers.</h2>
           <p>Stop showing minutes as the primary signal. Show guests where they are in a journey, with honest ranges. Make movement through that journey the main feedback.</p>
 
           <h3>Confidence ranges, not point estimates.</h3>
@@ -118,6 +144,7 @@
 
           <p>What the project actually needs is field validation: install it in a real restaurant, A/B against the existing system, measure both objective metrics (host stand crowding, no-show rate) and subjective ones (post-wait surveys on perceived duration and satisfaction).</p>
 
+          <h2 id="learnings">Learnings</h2>
           <p>The thing I found most interesting working through this is how much restaurant waiting is already designed — it's just designed for the wrong audience. The buzzer, the host stand, the "20 minutes" estimate are all designed for the restaurant's operations. They're honest information from the restaurant's point of view. They're just answering a question the guest isn't asking.</p>
         </div>
 
@@ -131,6 +158,40 @@
   </footer>
 
   <script>
+    // Case Study Tabs
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.case-tab');
+      if (tabs.length === 0) return;
+
+      tabs[0].classList.add('is-active');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const sectionId = tab.dataset.section;
+          const target = document.getElementById(sectionId);
+          if (!target) return;
+          tabs.forEach(t => t.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.replaceState(null, '', `#${sectionId}`);
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const btn = document.querySelector(`.case-tab[data-section="${entry.target.id}"]`);
+            if (btn) {
+              tabs.forEach(t => t.classList.remove('is-active'));
+              btn.classList.add('is-active');
+            }
+          }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px' });
+
+      document.querySelectorAll('.case-body h2[id]').forEach(h => observer.observe(h));
+    });
+
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -157,13 +218,35 @@
       mobileMenu.classList.remove('is-open');
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Menu');
+
+      const panel = contactModal.querySelector('.contact-modal-panel');
+      if (window.innerWidth >= 768) {
+        const trigger = document.querySelector('.nav .contact-trigger');
+        const rect = trigger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      } else {
+        const rect = hamburger.getBoundingClientRect();
+        panel.style.cssText = `position:fixed;top:${rect.bottom + 14}px;right:${window.innerWidth - rect.right}px;left:auto;margin:0;`;
+      }
+      contactModal.classList.add('is-dropdown');
+      setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 0);
+
       contactModal.classList.add('is-open');
     }
 
-    function closeContact() { contactModal.classList.remove('is-open'); }
+    function closeOnOutsideClick(e) {
+      if (!contactModal.querySelector('.contact-modal-panel').contains(e.target)) {
+        closeContact();
+      }
+    }
+
+    function closeContact() {
+      contactModal.classList.remove('is-open', 'is-dropdown');
+      contactModal.querySelector('.contact-modal-panel').style.cssText = '';
+      document.removeEventListener('click', closeOnOutsideClick);
+    }
 
     document.querySelectorAll('.contact-trigger').forEach(el => el.addEventListener('click', openContact));
-    contactModal.querySelector('.contact-modal-close').addEventListener('click', closeContact);
     contactModal.querySelector('.contact-modal-backdrop').addEventListener('click', closeContact);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
   </script>
