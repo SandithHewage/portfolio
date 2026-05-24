@@ -6,18 +6,6 @@
   html { scroll-behavior: smooth; }
 }
 
-/* ==========================================================================
-   FONTS — place Inter-Variable.woff2 in fonts/ to activate the fallback.
-   Helvetica Neue renders natively on macOS without a font load.
-   ========================================================================== */
-
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ==========================================================================
    TOKENS
@@ -47,7 +35,7 @@
    ========================================================================== */
 
 body {
-  font-family: "Helvetica Neue", "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "Helvetica Neue", "Segoe UI", "Roboto", "Arial", sans-serif;
   background: var(--paper);
   color: var(--onyx);
   -webkit-font-smoothing: antialiased;
